@@ -8,6 +8,7 @@ import (
 type Controller interface {
 	HealthCheck(c *gin.Context)
 	Recommend(c *gin.Context)
+	Send(c *gin.Context)
 }
 
 type controller struct {
