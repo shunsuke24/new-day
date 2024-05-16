@@ -7,8 +7,16 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/new-day/infra"
-	"github.com/new-day/presenter"
 )
+
+type UserInformation struct {
+	// ユーザID
+	ID string `json:"id"`
+	// ユーザ名
+	Name string `json:"name"`
+	// 年齢
+	Age int `json:"age"`
+}
 
 func (cont *controller) Send(c *gin.Context) {
 	// Redisに接続する
@@ -17,10 +25,10 @@ func (cont *controller) Send(c *gin.Context) {
 	defer redis.CloseRedis()
 
 	// requestInformationをUserInformationで初期化する
-	requestInformation := presenter.UserInformation{}
+	var requestInformation UserInformation
 
 	// 構造体をBINDする
-	err := c.Bind(&requestInformation)
+	err := c.BindQuery(&requestInformation)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"Status": "BadRequest"})
 	}
