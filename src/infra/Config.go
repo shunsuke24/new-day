@@ -52,6 +52,18 @@ func (r *Redis) Set(key string, payload []byte) error {
 	return nil
 }
 
+// Redisからデータを取得
+func (r *Redis) Get(key string) ([]byte, error) {
+	value, err := redis.Bytes(r.connection.Do("GET", key))
+	if err != nil {
+		if err == redis.ErrNil {
+			return nil, nil
+		}
+		return nil, err
+	}
+	return value, nil
+}
+
 // キーチェック
 func (r *Redis) keyExist(key string) bool {
 	// キーが既にRedis内に存在するかチェックする

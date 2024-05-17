@@ -32,7 +32,8 @@ func (r *Router) Route() {
 	r.Engine.Use(errorMiddleware())
 	r.Engine.GET("/health", r.controller.HealthCheck)
 	r.Engine.GET("/recommend", r.controller.Recommend)
-	r.Engine.POST("/send", r.controller.Send)
+	r.Engine.POST("/user", r.controller.CreateUser)
+	// r.Engine.GET("/user", r.controller.GetUser)
 }
 
 func (r *Router) CORS() {
