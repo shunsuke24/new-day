@@ -20,7 +20,7 @@ services:
     build: 
       context: .
       dockerfile: ./.docker/database/Dockerfile
-    container_name: new_day-redis
+    container_name: new-day-redis
     image: new_day/redis:0.1.0
     ports:
       - "6379:6379"

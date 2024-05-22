@@ -5,6 +5,7 @@ import (
 )
 
 func (u *usecase) CreateUser(user *model.User) (string, error) {
+
 	err := u.userRepo.Save(user)
 	if err != nil {
 		return "fail", err

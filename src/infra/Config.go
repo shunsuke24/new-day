@@ -71,6 +71,7 @@ func (r *Redis) keyExist(key string) bool {
 	if err != nil {
 		fmt.Println("infrastructure/database/keyExist() : ", err)
 	}
+
 	return result
 }
 
